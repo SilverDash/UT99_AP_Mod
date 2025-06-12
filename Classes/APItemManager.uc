@@ -102,6 +102,7 @@ function Reset()
 
 function TravelPostAccept()
 {
+	LOG(SELF@"CALLING POST ACCEPT");
 	if (DeathMatchPlus(Level.Game) != None)
 	{
 		Log("APLadderInventory: Calling InitRatedGame");

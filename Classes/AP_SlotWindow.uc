@@ -9,6 +9,7 @@ function Created()
 	local int W, H;
 	local float XWidth, YHeight, XMod, YMod, XPos, YPos, YOffset;
 	local color TextColor;
+	Log("SAVE SLOT WINDOW CREATED");
 
 	//Super.Created();
 

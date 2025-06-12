@@ -77,6 +77,7 @@ Function AP_SlotData GetSlotData()
 
 function Connect()
 {
+	Log("TCPLINK Connect");
 	SlotData = GetSlotData();
 	GetMutator();
 	if (FullyConnected || ConnectingToAP || LinkState == STATE_Connecting)
@@ -92,6 +93,7 @@ function Connect()
 
 event Resolved(IpAddr Addr)
 {
+	Log("TCPLINK Resolved");
 	StringToIpAddr("localhost", Addr);
     Addr.Port = 2341;
     BindPort();
@@ -110,6 +112,7 @@ function TimedOut()
 {
 	if (!FullyConnected && !ConnectingToAP)
 	{
+		Log("TCPLINK TimedOut");
 		Level.Game.BroadcastMessage("Connection attempt timed out. Is the Unreal Tournament AP Client running?");
 		Close();
 		Connect();
@@ -118,6 +121,7 @@ function TimedOut()
 
 event ResolveFailed()
 {
+	Log("TCPLINK ResolveFailed");
     Level.Game.BroadcastMessage("Unable to resolve localhost:11311. Retrying...");
 	Close();
 	Connect();
@@ -126,6 +130,7 @@ event ResolveFailed()
 event Opened()
 {
 	local string crlf;
+	Log("TCPLINK OPENED");
 	SlotData = GetSlotData();
 	
 	crlf = chr(13)$chr(10);
@@ -973,6 +978,7 @@ function SendBinaryMessage(string message, optional bool continuation, optional 
 
 event Closed()
 {
+	Log("TCPLINK Closed");
 	if (!Refused)
 	{
 		if (SlotData.ConnectedOnce)

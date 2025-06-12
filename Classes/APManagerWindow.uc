@@ -88,7 +88,7 @@ function Created()
 	local int W, H;
 	local float XWidth, YHeight, XMod, YMod, XPos, YPos;
 	local color TextColor;
-
+	Log("MANAGER WINDOW CREATED");
 	//Super.Created();
 
 	/*
@@ -122,9 +122,10 @@ function Created()
 	/*
 	 * Create components.
 	 */
-
+	Log("CHECKING LADDER OBJECT");
 	// Check ladder object.
 	LadderObj = APItemManager(GetPlayerOwner().FindInventoryType(class'APItemManager'));
+	Log("LADDER OBJECT IS"@LadderObj);
 	if (LadderObj == None)
 	{
 		Log("APManagerWindow: Player has no APItemManager!!");

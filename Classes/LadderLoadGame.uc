@@ -13,14 +13,15 @@ event playerpawn Login
 
 function AcceptInventory(pawn PlayerPawn)
 {
+	
 	local inventory Inv, Next;
 	local APItemManager LadderObj;
-
+	Log("LADDER LOAD GAME ACCEPT INVENTORY");
 	for( Inv=PlayerPawn.Inventory; Inv!=None; Inv=Next )
 	{
 		Inv.Destroy();
 	}
-
+	Log("RUNNING LOAD GAME ON CONSOLE");
 	AP_UTConsole(PlayerPawn(PlayerPawn).Player.Console).LoadGame();
 	PlayerPawn.Weapon = None;
 	PlayerPawn.SelectedItem = None;

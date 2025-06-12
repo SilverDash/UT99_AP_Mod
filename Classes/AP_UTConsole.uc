@@ -13,6 +13,8 @@ function AP_SlotData SpawnSlotDataObject()
 {
 	local LevelInfo Entry;
 	local AP_ModMutator mod;
+	Log("CONSOLE CALLING SPAWN SLOT DATA");
+	Log("SLOT DATA IS"@SlotData);
 
 	if(SlotData == None)
 		SlotData = new class'AP_SlotData';
@@ -30,7 +32,7 @@ function AP_SlotData SpawnSlotDataObject()
 		log("Console Player"@Root.GetPlayerOwner()@"Was set to Mod Player"@mod.PlayerP);
 	}
 
-
+	Log("CONSOLE SLOTDATA RETURNING"@SlotData);
 
 	return SlotData;
 }

@@ -6,6 +6,7 @@ function PostBeginPlay()
 {
 	local APItemManager LadderObj;
 	local int EmptySlot, j;
+	Log("NEW GAME INTERM OBJECT CALLING POST BEGIN PLAY");
 
 	EmptySlot = -1;
 	for (j=0; j<5; j++)

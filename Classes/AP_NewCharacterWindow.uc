@@ -19,6 +19,7 @@ function Created()
 	local int W, H;
 	local float XWidth, YHeight, XMod, YMod, XPos, YPos;
 	local color TextColor;
+	Log("NEW CHARACTER WINDOW CREATED");
 
 
 	/*
@@ -49,9 +50,11 @@ function Created()
 	BG3[1] = Texture(DynamicLoadObject(BGName3[1], Class'Texture'));
 	BG3[2] = Texture(DynamicLoadObject(BGName3[2], Class'Texture'));
 	BG3[3] = Texture(DynamicLoadObject(BGName3[3], Class'Texture'));
+	Log("SEARCHING FOR LADDER OBJECT");
 
 	// Check ladder object.
 	LadderObj = APItemManager(GetPlayerOwner().FindInventoryType(class'APItemManager'));
+	Log("LADDER OBJECT IS"@LadderObj);
 	if (LadderObj == None)
 	{
 		Log("APNewCharacterWindow: Player has no APItemManager!!");

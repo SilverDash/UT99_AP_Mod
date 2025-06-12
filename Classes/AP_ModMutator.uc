@@ -47,8 +47,11 @@ function LoadSlotData(JsonObject json)
 	local string n, hg, itemName;
 	local int i, j, v, id;
 	local AP_SlotData SlotData;
+	Log("LOADSLOT DATA CALLED");
 	GetPlayer();
+	Log("LOADSLOT DATA:"@PlayerP);
 	SlotData = AP_UTConsole(PlayerP.Player.Console).SlotData;
+	Log("LOADSLOT DATA:"@SlotData);
 
 	if (SlotData.Initialized)
 		return;
@@ -216,6 +219,8 @@ event Tick(float d)
 function CreateClient()
 {
 	local AP_TcpLink Cl;
+	Log("CREATE CLIENT CALLED");
+	Log("CREATE CLIENT CALLED:CLIENT IS"@Client);
 	if (Client != None)
 		return;
 	
@@ -223,19 +228,24 @@ function CreateClient()
     {
         if(Cl != none && Client == None)
         {
+			LOG("FOUND CLIENT SETTING VAR:CLIENT ="@CL);
 			Client = Cl;
             break;
         }
     }
 	if(Client == None)
 	{
+		LOG("CLIENT NOT FOUND. SPAWNING NEW CLIENT");
 		Client = Spawn(class'AP_TcpLink');
 	}
 	
+
 	Client.PlayerP = GetPlayer();
+	LOG("SETTING CLIENTS PLAYER VAR TO"@Client.PlayerP );
 	//PlayerP=GetPlayer();	
 	if(AP_UTConsole(PlayerP.Player.Console).SlotData == None)
 	{
+		LOG("SLOT DATA IS NONE ON CLIENT. SPAWNING");
 		AP_UTConsole(PlayerP.Player.Console).SpawnSlotDataObject();
 	}
 }

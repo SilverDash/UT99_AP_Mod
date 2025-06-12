@@ -67,9 +67,11 @@ function ExecuteItem(UWindowPulldownMenuItem I)
 	switch(I)
 	{
 	case NewGame:
+		Log("GAME MENU NEW GAME");
 		GetPlayerOwner().ClientTravel( "UT-Logo-Map.unr?Game=Archipelago.LadderNewGame", TRAVEL_Absolute, True );
 		break;
 	case LoadGame:
+		Log("GAME MENU LOAD GAME");
 		GetPlayerOwner().ClientTravel( "UT-Logo-Map.unr?Game=Archipelago.LadderLoadGame", TRAVEL_Absolute, True );
 		break;
 	case Quit:

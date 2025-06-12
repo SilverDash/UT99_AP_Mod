@@ -15,12 +15,12 @@ function AcceptInventory(pawn PlayerPawn)
 {
 	local inventory Inv, Next;
 	local APItemManager LadderObj;
-
+	Log("LADDER START GAME ACCEPT INVENTORY");
 	for( Inv=PlayerPawn.Inventory; Inv!=None; Inv=Next )
 	{
 		Inv.Destroy();
 	}
-
+	Log("RUNNING NEW GAME ON CONSOLE");
 	AP_UTConsole(PlayerPawn(PlayerPawn).Player.Console).StartNewGame();
 	PlayerPawn.Weapon = None;
 	PlayerPawn.SelectedItem = None;
