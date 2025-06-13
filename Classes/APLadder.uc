@@ -740,14 +740,19 @@ function StartMap(string StartMap, int Rung, string GameType)
 {
 	local Class<GameInfo> GameClass;
 
+	LOG("START MAP FROM APLADDER"@StartMap@Rung@GameType);
+
 	GameClass = Class<GameInfo>(DynamicLoadObject(GameType, Class'Class'));
 	GameClass.Static.ResetGame();
+	LOG("GAMECLASS"@GameClass);
 
 	StartMap $= "?Game="$GameType
 				$"?Mutator=Archipelago.AP_ModMutator"
 				$"?Tournament="$Rung
 				$"?Name="$GetPlayerOwner().PlayerReplicationInfo.PlayerName
 				$"?Team=0";
+
+	LOG("START MAP ARGS:"@StartMap);
 
 	Root.SetMousePos((Root.WinWidth*Root.GUIScale)/2, (Root.WinHeight*Root.GUIScale)/2);
 	Root.Console.CloseUWindow();
@@ -773,14 +778,14 @@ function ShowWindow()
 		LadderObj.CurrentLadder = DemoLadder;
 	else
 		LadderObj.CurrentLadder = Ladder;
-	//Super.ShowWindow();
+	Super.ShowWindow();
 }
 
 function HideWindow()
 {
 	Root.Console.bBlackOut = False;
 
-	//Super.HideWindow();
+	Super.HideWindow();
 }
 
 function CheckOpenCondition()

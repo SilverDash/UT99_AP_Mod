@@ -4,8 +4,8 @@
 // This is the GAMESIDE ladder. Not to be confused with the APLadder Menu object
 //=============================================================================
 class LadderAP extends botpack.Ladder
-	abstract
-	config(Archipelago);
+	abstract;
+	//config(Archipelago);
 
 var() int			Matches;						// # of matches in ladder.
 var() bool			bTeamGame;						// TeamGame ladder?

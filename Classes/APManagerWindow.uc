@@ -792,7 +792,9 @@ function Notify(UWindowWindow C, byte E)
 				GetPlayerOwner().ClientTravel("EOL_Statues.unr?Game=Botpack.TrophyGame", TRAVEL_Absolute, True);
 			break;
 		case NextButton:
+		    LOG("SELECTED LADDER"@LadderTypes[SelectedLadder]);
 			LadderWindow = Class<UWindowWindow>(DynamicLoadObject(LadderTypes[SelectedLadder], class'Class'));
+			LOG("LADDER WINDOW"@LadderWindow);
 			LadderObj = None;
 			HideWindow();
 			Root.CreateWindow(LadderWindow, 100, 100, 200, 200, Root, True);

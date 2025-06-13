@@ -29,7 +29,7 @@ function FillInfoArea(int i)
 
 function NextPressed()
 {
-	local EnemyBrowser EB;
+	local APEnemyBrowser EB;
 	local string MapName;
 
 	if (PendingPos > ArrowPos)
@@ -51,7 +51,7 @@ function NextPressed()
 		}
 	} else {
 		HideWindow();
-		EB = EnemyBrowser(Root.CreateWindow(class'EnemyBrowser', 100, 100, 200, 200, Root, True));
+		EB = APEnemyBrowser(Root.CreateWindow(class'APEnemyBrowser', 100, 100, 200, 200, Root, True));
 		EB.LadderWindow = Self;
 		EB.Ladder = LadderObj.CurrentLadder;
 		EB.Match = SelectedMatch;

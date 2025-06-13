@@ -86,7 +86,7 @@ function LoadSlotData(JsonObject json)
 
 
 	SlotData.Initialized = true;
-
+	
 }
 
 function ScreenMessage(String message, optional Name type)
@@ -216,60 +216,6 @@ event Tick(float d)
 	Super.Tick(d);	
 }
 
-function CreateClient()
-{
-	local AP_TcpLink Cl;
-	Log("CREATE CLIENT CALLED");
-	Log("CREATE CLIENT CALLED:CLIENT IS"@Client);
-	if (Client != None)
-		return;
-	
-    foreach AllActors(Class'AP_TcpLink', Cl)
-    {
-        if(Cl != none && Client == None)
-        {
-			LOG("FOUND CLIENT SETTING VAR:CLIENT ="@CL);
-			Client = Cl;
-            break;
-        }
-    }
-	if(Client == None)
-	{
-		LOG("CLIENT NOT FOUND. SPAWNING NEW CLIENT");
-		Client = Spawn(class'AP_TcpLink');
-	}
-	
-
-	Client.PlayerP = GetPlayer();
-	LOG("SETTING CLIENTS PLAYER VAR TO"@Client.PlayerP );
-	//PlayerP=GetPlayer();	
-	if(AP_UTConsole(PlayerP.Player.Console).SlotData == None)
-	{
-		LOG("SLOT DATA IS NONE ON CLIENT. SPAWNING");
-		AP_UTConsole(PlayerP.Player.Console).SpawnSlotDataObject();
-	}
-}
-
-event PreBeginPlay()
-{
-	local AP_ModMutator Mute;
-	Super.PreBeginPlay();
-
-	foreach AllActors(class'AP_ModMutator', Mute)
-	{
-		if (Mute != none && Mute != Self)
-		{
-			Self.Destroy();
-		}
-	}
-}
-
-event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if(Client == None)
-    	CreateClient();	
-}
 
 function KeepConnectionAlive()
 {

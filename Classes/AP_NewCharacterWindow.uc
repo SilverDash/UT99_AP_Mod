@@ -942,6 +942,7 @@ function NextPressed()
 {
 	local int i;
 	local APManagerWindow ManagerWindow;
+	LOG("NEXT PRESSED FROM NEW CHARACTER WINDOW");
 
 	if (LadderObj.Sex ~= "F")
 	{
@@ -983,14 +984,14 @@ function Close(optional bool bByParent)
 	Root.Console.bLocked = False;
 	UMenuRootWindow(Root).MenuBar.ShowWindow();
 
-	//Super.Close(bByParent);
+	Super.Close(bByParent);
 }
 
 function HideWindow()
 {
 	Root.Console.bBlackOut = False;
 
-	//Super.HideWindow();
+	Super.HideWindow();
 }
 
 

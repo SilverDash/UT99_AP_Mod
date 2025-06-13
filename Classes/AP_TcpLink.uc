@@ -11,7 +11,7 @@ var transient bool Refused;
 var transient bool Reconnecting;
 var transient int EmptyCount;
 
-var AP_SlotData SlotData;
+var travel AP_SlotData SlotData;
 var AP_ModMutator Mod;
 var PlayerPawn PlayerP;
 
@@ -62,18 +62,32 @@ event PostBeginPlay()
 Function AP_SlotData GetSlotData()
 {
 	local PlayerPawn PP;
+	Log("TCPLINK GetSlotData");
+	if(SlotData != none)
+	{
+		Log("returning slot data");
+		return SlotData;
+	}
+
+	
 
 	foreach AllActors(Class'PlayerPawn', PP)
 	{
+
 		if (PP != None)
 		{
+			Log("TCPLINK PP isn't none");
+			Log(AP_UTConsole(PP.Player.Console).SlotData);
 			return AP_UTConsole(PP.Player.Console).SlotData;
 		}
 	}
 	
 }
 
-
+function TravelPostAccept()
+{
+	LOG(SELF@"CALLING POST ACCEPT");
+}
 
 function Connect()
 {
@@ -392,6 +406,13 @@ function ParseJSON(string json)
 			break;
 		}
 	}
+	log(Mod);
+	if (Mod == None)
+	{
+		log("Get mutator");
+		GetMutator();
+	}
+	Log(Mod);
 	
 	Mod.DebugMessage("[ParseJSON] Received command: " $json);
 	
@@ -729,6 +750,7 @@ function OnLocationInfoCommand(string json)
 
 	local Actor container;
 
+	LOG("LOCATION INFO COMMAND"@json);
 		
 
 	Mod.ReplOnce(json, "locations", "locations_0", json, true);
@@ -762,7 +784,7 @@ function OnReceivedItemsCommand(string json)
 	local string s;
 	local JsonObject jsonObj, jsonChild;
 	local bool b;
-	
+	LOG("RECIEVED ITEMS COMMAND"@json);
 
 	Mod.ReplOnce(json, "items", "items_0", json, true);
 	b = true;
@@ -832,7 +854,7 @@ function GrantItem(int itemId)
 	local class<Actor> worldClass, invOverride;
 	local APItem item;
 	local Pawn player;
-
+	LOG("GRANT ITEM COMMAND"@ItemID);
 	
 	
 }
@@ -841,7 +863,7 @@ function OnBouncedCommand(string json)
 {
 	local JsonObject jsonObj, jsonChild;
 	local string cause, msg, source;
-
+	LOG("BOUNCE COMMAND"@json);
 
 
 

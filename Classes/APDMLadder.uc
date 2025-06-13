@@ -29,7 +29,7 @@ function FillInfoArea(int i)
 
 function NextPressed()
 {
-	local EnemyBrowser EB;
+	local APEnemyBrowser EB;
 	local string MapName;
 
 	if (PendingPos > ArrowPos)
@@ -51,7 +51,8 @@ function NextPressed()
 		}
 	} else {
 		HideWindow();
-		EB = EnemyBrowser(Root.CreateWindow(class'EnemyBrowser', 100, 100, 200, 200, Root, True));
+		LOG("NEXT PRESSED FROM APDMLADDER");
+		EB = APEnemyBrowser(Root.CreateWindow(class'APEnemyBrowser', 100, 100, 200, 200, Root, True));
 		EB.LadderWindow = Self;
 		EB.Ladder = LadderObj.CurrentLadder;
 		EB.Match = SelectedMatch;
@@ -63,17 +64,17 @@ function NextPressed()
 function StartMap(string StartMap, int Rung, string GameType)
 {
 	local Class<GameInfo> GameClass;
-
+	LOG("START MAP FROM APDMLADDER"@StartMap@Rung@GameType);
 	GameClass = Class<GameInfo>(DynamicLoadObject(GameType, Class'Class'));
 	GameClass.Static.ResetGame();
-
+	LOG("GAMECLASS"@GameClass);
 	StartMap = StartMap
 				$"?Game="$GameType
 				$"?Mutator=Archipelago.AP_ModMutator"
 				$"?Tournament="$Rung
 				$"?Name="$GetPlayerOwner().PlayerReplicationInfo.PlayerName
 				$"?Team=255";
-
+	LOG("START MAP ARGS:"@StartMap);
 	Root.Console.CloseUWindow();
 	if ( TournamentGameInfo(GetPlayerOwner().Level.Game) != None )
 		TournamentGameInfo(GetPlayerOwner().Level.Game).LadderTransition(StartMap);

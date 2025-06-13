@@ -60,7 +60,7 @@ var travel string		Sex;
 
 var travel string		SkillText;
 
-var AP_UTConsole ApConsole;	
+var travel AP_UTConsole ApConsole;	
 
 function GetOwnerVariables()
 {
